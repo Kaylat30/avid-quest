@@ -2,7 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { FaClockRotateLeft } from "react-icons/fa6";
-
+import { defer, useLoaderData, Await } from 'react-router-dom';
 import crane from '../imgs/crane.jpg'; 
 import elephant from '../imgs/elephant.webp'; 
 import gorilla from '../imgs/gorila.jpg'; 
@@ -11,8 +11,18 @@ import tourist from '../imgs/tourist.jpg';
 import giraffe from '../imgs/giraffe.jpg'; 
 import resort1 from '../imgs/resort1.jpg'; 
 import buffalo from "../imgs/buffalo.jpg" ;
+import { getSafari } from '../api';
+import { Suspense } from 'react';
+
+export function loader({params})
+{
+    let loadedSafari = getSafari(params.id)
+    return defer({safari: loadedSafari})
+}
+
 export default function SafariInfo()
 {
+    const loaderData = useLoaderData()
     const images = [
         { id: 1, src: elephant },
         { id: 2, src: tourist },
@@ -55,35 +65,20 @@ export default function SafariInfo()
           },
         ],
       };
-    return(
-        <>
-            {/* Gallery section */}
-            <div className='mt-3 mb-3 h-96 justify-center' >
-            <Slider {...settings}>
-                {images.map((image) => (
-                <div key={image.id} className='mt-14'>
-                    <div className="w-64 h-64 flex justice group cursor-pointer">
-                    <img
-                        src={image.src}
-                        alt="Your Image"
-                        className="w-full h-full rounded-lg group-hover:opacity-75 transition-opacity duration-300"
-                    />
-                    
-                    </div>
-                </div>
-                ))}
-            </Slider>
-            </div>
 
-            {/* header section */}
+      function renderSafariElement(safari)
+      {
+        return(
+            <>
+                {/* header section */}
             <section className='flex justify-around items-center bg-pink-100 h-52 flex-wrap'>
-                <div className='font-bold md:text-2xl'>NAIROBI & MASAI MARA 4 NIGHTS, 5 DAYS PACKAGE</div>
+                <div className='font-bold md:text-2xl'>{safari.title}</div>
                 <div className='flex space-y-2 space-x-4'>
                     <div className='flex flex-col md:flex-row items-center space-x-2'>
                         <FaClockRotateLeft className='text-brightRed text-2xl'/>
                         <div className='flex flex-col'>
                             <h1 className='text-gray-400 font-sm'>From</h1>
-                            <h1 className='font-medium'>$2000.00</h1>
+                            <h1 className='font-medium'>${safari.price}</h1>
                         </div>
                     </div>
                     <div className='flex flex-col md:flex-row items-center space-x-2'>
@@ -122,26 +117,7 @@ export default function SafariInfo()
                     <div className='space-y-5'>
                         <div className='space-y-3'>
                         <h1 className='text-brightRed font-bold text-2xl'>Overview</h1>
-                        <p>Our 3 Days Safari will take you to Uganda’s Largest National Park which is located in the northwestern part of the country covering an area of approx…
-                         3,840sqkm. it was gazette as a National park and game reserve in 1926. The Park was named after the Murchison falls that flows along the Albert Nile River
-                          which separates the park into two sections namely the southern and the northern sectors. It’s a habitat to over 550 species of birds and 76 species of mammals.
-
-                            This trip starts from Entebbe or Kampala, our first stopover is at Ziwa Rhino Sanctuary- the only place in Uganda where you can see rhinos in the wilderness,
-                             the Trek takes between 1.5 to 2.5 hours depending on far the rhinos have moved, you will have lunch at the sanctuary before heading to Murchison falls National Park,
-                             one of the most interesting national parks that Uganda has to offer. The major activities done in the park include the game drives and the cruise to the bottom of the falls.
-
-                            While in the park, game drives are done in the delta, Buligi Peninsular and at the heart of Murchison, several animals can be seen including elephants, buffalos, giraffes,
-                             lions and leopards among other animals.
-
-                            The 3-hour boat cruise to the bottom of the falls offers another opportunity to see these animals and they come to water especially on the sunny day, animals sighted on this 
-                            cruise include Crocodiles, Hippos, Buffalos and so many bird species like the kingfishers, Hornbills, bee-eaters, Egyptian geese, and pelicans.
-
-                            You visit to Murchison Falls National Park will crown with a visit to the top of the falls, Murchison falls are the world most powerful falls, where the wide river Nile waters squeezes in 8meter wide gorge, this is a scene you should never miss.
-
-                            The Park can also be accessed by air. should you prefer to fly instead of driving. we are happy to assist you arrange for the flights.
-
-                            For a more details and ideas on what else to do and to stay, please get in touch with us
-                        </p>
+                        <p>{safari.description}</p>
                         </div>                        
                         <div className='space-y-2'>
                             <h1 className='font-bold text-xl underline'>Safari Highlights:</h1>
@@ -297,6 +273,34 @@ export default function SafariInfo()
                         </div>
                     </div>
             </section>
+            </>
+        )
+      }
+    return(
+        <>
+            {/* Gallery section */}
+            <div className='mt-3 mb-3 h-96 justify-center' >
+            <Slider {...settings}>
+                {images.map((image) => (
+                <div key={image.id} className='mt-14'>
+                    <div className="w-64 h-64 flex justice group cursor-pointer">
+                    <img
+                        src={image.src}
+                        alt="Your Image"
+                        className="w-full h-full rounded-lg group-hover:opacity-75 transition-opacity duration-300"
+                    />
+                    
+                    </div>
+                </div>
+                ))}
+            </Slider>
+            </div>
+
+            <Suspense fallback={<h1>Loading safari...</h1>}>
+                <Await resolve={loaderData.safari}>
+                    {renderSafariElement}
+                </Await>
+            </Suspense>
 
         </>
     )

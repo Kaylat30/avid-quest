@@ -1,10 +1,14 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import { Link, NavLink ,useLocation} from 'react-router-dom';
 import image from '../imgs/logo.png';
+import { getAuth, signOut } from 'firebase/auth';
 
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const location = useLocation();
+  const auth = getAuth();
   const activeStyles = {
     fontWeight: "bold",
     textDecoration: "underline",
@@ -13,6 +17,33 @@ export default function Header() {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  // Close the menu when a navigation occurs
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  // Check user authentication status on component mount
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        
+        setAuthenticated(true);
+      } else {
+        setAuthenticated(false);
+      }
+    });
+    return () => unsubscribe(); 
+  }, [auth]);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      alert("logged out successfully")
+    } catch (error) {
+      console.error('Error logging out:', error.message);
+    }
   };
 
   return (
@@ -80,12 +111,22 @@ export default function Header() {
 
           </div>
 
-          <Link
-            to="login"
-            className="hidden lg:block p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
-          >
-            Login
-          </Link>
+          {/* Conditionally render logout button */}
+          {authenticated ? (
+              <button
+                onClick={handleLogout}
+                className="hidden lg:block p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="login"
+                className="hidden lg:block p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+              >
+                Login
+              </Link>
+            )}
         </div>
 
         
@@ -115,12 +156,22 @@ export default function Header() {
         <Link to="discover">Discover Nature</Link>
         <Link to="booking">Bookings</Link>
         <Link to="contact">Contact Us</Link>
-        <Link
-            to="login"
-            className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
-          >
-            Login
-        </Link>
+        {/* Conditionally render logout button */}
+        {authenticated ? (
+              <button
+                onClick={handleLogout}
+                className="block p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="login"
+                className="block p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+              >
+                Login
+              </Link>
+            )}
       </div>
     </nav>
   );
