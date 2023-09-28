@@ -15,6 +15,7 @@ import NotFound from './pages/NotFound'
 import Signup,{action as signupAction} from './pages/Signup'
 import "./api"
 import RequireAuth from './utils'
+import Slideshow from './pages/Slideshow'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />} errorElement={<Error />}>
@@ -32,6 +33,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
     <Route path='signup' action={signupAction} element={<Signup/>} />
     <Route path='*' element={<NotFound/>} />
+    <Route path='slideshow' element={<Slideshow />} />
   </Route>
 ))
 

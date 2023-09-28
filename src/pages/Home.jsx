@@ -49,11 +49,11 @@ export default function Home() {
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentSlide((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
   };
   
   const prevSlide = () => {
-    setCurrentSlide((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentSlide((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
   };
   
   useEffect(() => {
@@ -65,6 +65,8 @@ export default function Home() {
       clearInterval(interval);
     };
   }, []);
+
+  const currentSlideData = slides[currentSlide];
 
   const renderSlideIndicators = () => {
     return (
@@ -134,19 +136,12 @@ export default function Home() {
     <>
     {/* first slider section */}
     <div>
-      <div className="slideshow-container">
-        {slides.map((slide, index) =>{ console.log(`Slide index: ${index}`); return (
-          <div
-            key={index}
-            className={`slideshow-item relative ${index === currentSlide ? 'block' : 'none'}`}
-          >
-            <img className="slideshow-image" src={slide.image} alt={`Image ${index + 1}`} />
-            <div className="slideshow-text">
-              <div className="slideshow-heading">{slide.heading}</div>
-              <div className="slideshow-paragraph">{slide.paragraph}</div>
-            </div>
-          </div>
-        )})}
+      <div className="slideshow-container">       
+          <img className="slideshow-image" src={currentSlideData.image} alt={`Image ${currentSlide + 1}`} />
+          <div className="slideshow-text">
+            <div className="slideshow-heading">{currentSlideData.heading}</div>
+            <div className="slideshow-paragraph">{currentSlideData.paragraph}</div>
+          </div>       
         <button className="slideshow-button prev" onClick={prevSlide}>
           Previous
         </button>
@@ -156,6 +151,7 @@ export default function Home() {
       </div>
       {renderSlideIndicators()}
     </div>
+
     {/* Destination section */}
     <section>
       <div className='flex flex-col items-center'>
@@ -222,18 +218,11 @@ export default function Home() {
     {/* slider section */}
       <div className='rounded-x'>
         <div className="slideshow-container flex items-center lg:w-2/6 lg:h-72 lg:my-2 md:mb-3 md:w-96 md:h-72 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`slideshow-item relative ${index === currentSlide ? 'block' : 'none'}`}
-            >
-              <img className="slideshow-image" src={slide.image} alt={`Image ${index + 1}`} />
-              <div className="slideshow-text">
-                <div className="slideshow-heading">{slide.heading}</div>
-                <div className="slideshow-paragraph">{slide.paragraph}</div>
-              </div>
-            </div>
-          ))}
+        <img className="slideshow-image" src={currentSlideData.image} alt={`Image ${currentSlide + 1}`} />
+          <div className="slideshow-text">
+            <div className="slideshow-heading">{currentSlideData.heading}</div>
+            <div className="slideshow-paragraph">{currentSlideData.paragraph}</div>
+          </div>
           <button className="slideshow-button prev" onClick={prevSlide}>
             Previous
           </button>
