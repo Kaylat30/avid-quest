@@ -57,23 +57,32 @@ export default function Safaris() {
     setSearchParams({ dateFrom, minPrice: minValue.toString(), maxPrice: maxValue.toString() });
   };
 
-  // Function to filter safaris based on search parameters
-  const filterSafaris = (safaris) => {
-    const dateFromParam = searchParams.get('dateFrom');
-    const minPriceParam = parseInt(searchParams.get('minPrice'), 10);
-    const maxPriceParam = parseInt(searchParams.get('maxPrice'), 10);
+// Function to filter safaris based on search parameters
+const filterSafaris = (safaris) => {
+  const dateFromParam = searchParams.get('dateFrom');
+  const minPriceParam = parseInt(searchParams.get('minPrice'), 10);
+  const maxPriceParam = parseInt(searchParams.get('maxPrice'), 10);
 
-    return safaris.filter((safari) => {
-      if (safari.date) {
-        const safariDate = safari.date instanceof Date ? safari.date : new Date(safari.date);
-        if (dateFromParam && safariDate < new Date(dateFromParam)) {
-          return false;
-        }
+  return safaris.filter((safari) => {
+    const safariDate = safari.date ? new Date(safari.date) : null;
+
+    //check if user has selected a date
+    if (dateFromParam) {
+      if (!safariDate) {
+        return false; // Exclude safaris without a valid date
       }
 
-      return safari.price >= minPriceParam && safari.price <= maxPriceParam;
-    });
-  };
+      const selectedDate = new Date(dateFromParam);
+      if (safariDate < selectedDate) {
+        return false; // Exclude safaris that are earlier than the selected date
+      }
+    }
+
+    return safari.price >= minPriceParam && safari.price <= maxPriceParam;
+  });
+};
+
+
 
   function renderSafarisElements(safaris) {
     // Define the number of safaris to display per page
