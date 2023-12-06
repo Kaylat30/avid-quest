@@ -50,10 +50,10 @@ export default function Header() {
     <nav className="flex flex-col justify-center lg:items-center  mx-auto p-6 fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
       <div className='lg:inline-flex flex items-center justify-between'>
         <div className="flex items-center justify-between lg:space-x-5">
-          <div className="pt-2 flex items-center">
+          <Link to="/" className="pt-2 flex items-center">
             <img className="" src={image} width="40px" alt="VIVA QUEST LOGO" />
             <h2 className="font-bold text-2xl">Viva Quest</h2>
-          </div>
+          </Link>
 
           {/* Show on screens smaller than LG (976px) */}
           <div className={`lg:flex space-x-6 hide-on-mobile`}>

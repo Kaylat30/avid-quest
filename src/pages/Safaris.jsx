@@ -5,15 +5,15 @@ import { FaClockRotateLeft } from 'react-icons/fa6';
 import Slider from 'react-slider';
 import { defer } from 'react-router-dom';
 import { getSafaris } from '../api';
-import resort1 from '../imgs/resort1.jpg';
+import resort1 from '../imgs/rhino.jpg';
 import crane from '../imgs/crane.jpg';
 import elephant from '../imgs/elephant.webp';
 import gorilla from '../imgs/gorila.jpg';
 import lion from '../imgs/lion.jpg';
 import tourist from '../imgs/tourist.jpg';
 import giraffe from '../imgs/giraffe.jpg';
-import resort2 from '../imgs/resort2.jpg';
-import buffalo from '../imgs/buffalo.jpg';
+import resort2 from '../imgs/kidepo.jpg';
+import buffalo from '../imgs/murchison.jpg';
 
 export function loader() {
   let loadedSafaris = getSafaris();
@@ -77,7 +77,7 @@ export default function Safaris() {
 
   function renderSafarisElements(safaris) {
     // Define the number of safaris to display per page
-    const safarisPerPage = 3; // You can adjust this number
+    const safarisPerPage = 3; 
 
     // If there are no filtered safaris, display all safaris
     const filteredSafaris = filterSafaris(safaris).length === 0 ? safaris : filterSafaris(safaris);

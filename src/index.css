@@ -195,21 +195,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     padding: 10px;
     color: #fff;
     text-align: center;
 }
 
 .slideshow-heading {
-    font-size: 24px;
-    font-weight: bold;
     margin-bottom: 10px;
     text-align: center; /* Center-align the heading */
 }
 
 .slideshow-paragraph {
-    font-size: 16px;
     text-align: center; /* Center-align the paragraph */
 }
 

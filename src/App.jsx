@@ -9,13 +9,12 @@ import Booking from './pages/Booking'
 import ContactUs from './pages/ContactUs'
 import Safaris, {loader as safarisLoader} from './pages/Safaris'
 import SafariInfo, {loader as safariLoader} from './pages/SafariInfo'
-import Login, {loader as loginLoader, action as loginAction} from './pages/Login'
+import Login, {action as loginAction} from './pages/Login'
 import DiscoverInfo, {loader as DiscoverInfoLoader}  from './pages/DiscoverInfo'
 import NotFound from './pages/NotFound'
 import Signup,{action as signupAction} from './pages/Signup'
 import "./api"
 import RequireAuth from './utils'
-import Slideshow from './pages/Slideshow'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout />} errorElement={<Error />}>
@@ -30,10 +29,9 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='contact' element={<ContactUs/>} />
     <Route path='safaris' element={<Safaris/>} loader={safarisLoader}/>
     <Route path='safaris/:id' element={<SafariInfo/>} loader={safariLoader}/>
-    <Route path='login' element={<Login/>} loader={loginLoader} action={loginAction}/>
+    <Route path='login' element={<Login/>} action={loginAction}/>
     <Route path='signup' action={signupAction} element={<Signup/>} />
-    <Route path='*' element={<NotFound/>} />
-    <Route path='slideshow' element={<Slideshow />} />
+    <Route path='*' element={<NotFound/>} /> 
   </Route>
 ))
 

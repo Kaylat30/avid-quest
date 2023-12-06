@@ -1,11 +1,6 @@
-import { Form, Link ,useNavigation,useNavigate,useLoaderData,useActionData} from "react-router-dom"
+import { Form, Link ,useNavigation,useNavigate,useActionData} from "react-router-dom"
 import { useState, useEffect } from "react";
 import { loginUserWithEmailAndPassword } from '../api';
-
-export function loader() {
-    return new URL(window.location.href).searchParams.get("message")
-}
-
 
 export async function action({request}) {
     const formData = await request.formData()
@@ -26,7 +21,7 @@ export async function action({request}) {
 export default function Login()
 {
     const actionData= useActionData()
-    const message = useLoaderData()
+    const message = new URL(window.location.href).searchParams.get("message")
     const navigation = useNavigation() 
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate()
@@ -63,7 +58,7 @@ export default function Login()
                 }
               </button>
             </Form>
-            <div>Already have an account? <Link className="text-brightRed" to='/signup'>Sign up</Link></div>
+            <div>Do not have an account? <Link className="text-brightRed" to='/signup'>Sign up</Link></div>
           </div>
         </>
       );

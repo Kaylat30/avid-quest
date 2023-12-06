@@ -55,7 +55,7 @@ export default function Signup()
                     </button>
 
                 </Form>
-                <div>Do not have an account? <Link className="text-brightRed" to='/login'>Sign in</Link></div>
+                <div>Already have an account? <Link className="text-brightRed" to='/login'>Sign in</Link></div>
 
             </div>
         </>

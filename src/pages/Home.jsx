@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import {IoChevronForward,IoChevronBack} from "react-icons/io5";
 
 import crane from '../imgs/crane.jpg'; 
 import elephant from '../imgs/elephant.webp'; 
@@ -10,37 +11,40 @@ import lion from '../imgs/lion.jpg';
 import tourist from '../imgs/tourist.jpg'; 
 import tiger from "../imgs/tiger.png" ;
 import giraffe from '../imgs/giraffe.jpg'; 
-import resort1 from '../imgs/resort1.jpg'; 
-import resort2 from '../imgs/resort2.jpg'; 
 import buffalo from "../imgs/buffalo.jpg" ;
+import rhino from "../imgs/rhino.jpg" ;
+import mburo from '../imgs/mburo.jpg'; 
+import kidepo from '../imgs/kidepo.jpg'; 
+import murchison from "../imgs/murchison.jpg" ;
+import queen from "../imgs/queen.jpg" ;
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
       image: elephant,
-      heading: 'Heading 1',
-      paragraph: 'Paragraph 1 Text goes here.',
+      heading: 'Travel & Adventures',
+      paragraph: 'Where Would You Like To Go',
     },
     {
       image: crane,
-      heading: 'Heading 2',
-      paragraph: 'Paragraph 2 Text goes here.',
+      heading: 'Traveling',
+      paragraph: 'Uganda the Pearl of Africa',
     },
     {
       image: gorilla,
-      heading: 'Heading 3',
-      paragraph: 'Paragraph 3 Text goes here.',
+      heading: 'Traveling',
+      paragraph: 'Explore Uganda Gorillas',
     },
     {
       image: lion,
-      heading: 'Heading 4',
-      paragraph: 'Paragraph 4 Text goes here.',
+      heading: 'Traveling',
+      paragraph: 'Your journey begins here',
     },
     {
       image: tourist,
-      heading: 'Heading 5',
-      paragraph: 'Paragraph 5 Text goes here.',
+      heading: 'Traveling',
+      paragraph: 'Your journey begins here',
     },
   ];
 
@@ -83,7 +87,7 @@ export default function Home() {
   };
 
   const parentDivStyle = {
-    backgroundImage: `url(${resort2})`, // Replace with your background image URL
+    backgroundImage: `url(${rhino})`, 
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -96,11 +100,11 @@ export default function Home() {
     { id: 4, src: lion },
     { id: 5, src: gorilla },
     { id: 6, src: giraffe },
-    { id: 7, src: tourist },
+    { id: 7, src: mburo },
     { id: 8, src: crane },
-    { id: 9, src: resort1 },
-    { id: 10, src: gorilla },
-    // Add more images as needed
+    { id: 9, src: kidepo },
+    { id: 10, src: murchison },
+
   ];
   
   const settings = {
@@ -139,14 +143,14 @@ export default function Home() {
       <div className="slideshow-container">       
           <img className="slideshow-image" src={currentSlideData.image} alt={`Image ${currentSlide + 1}`} />
           <div className="slideshow-text">
-            <div className="slideshow-heading">{currentSlideData.heading}</div>
-            <div className="slideshow-paragraph">{currentSlideData.paragraph}</div>
+            <div className="slideshow-heading font-smooch text-brightRed text-4xl sm:text-6xl">{currentSlideData.heading}</div>
+            <div className="slideshow-paragraph text-4xl font-bold">{currentSlideData.paragraph}</div>
           </div>       
-        <button className="slideshow-button prev" onClick={prevSlide}>
-          Previous
+        <button className="slideshow-button prev rounded-full  hover:bg-black " onClick={prevSlide}>
+        <IoChevronBack className='w-8 h-8'/>
         </button>
-        <button className="slideshow-button next" onClick={nextSlide}>
-          Next
+        <button className="slideshow-button next rounded-full hover:bg-black" onClick={nextSlide}>
+        <IoChevronForward className='w-8 h-8'/>
         </button>
       </div>
       {renderSlideIndicators()}
@@ -155,8 +159,8 @@ export default function Home() {
     {/* Destination section */}
     <section>
       <div className='flex flex-col items-center'>
-      <div className='text-brightRed font-bold'>Destination Lists</div>
-      <div className='text-3xl font-bold'>Go Exotic Places</div>
+      <div className='text-brightRed font-smooch text-4xl'>Destination Lists</div>
+      <div className='text-3xl font-bold font-indie-flower'>Go Exotic Places</div>
       </div>
     
     {/* first three images */}
@@ -164,14 +168,14 @@ export default function Home() {
         
         <div className="relative w-full lg:w-64 lg:h-64 lg:my-2 md:mb-3 md:w-52 md:h-64 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
           <img
-            src={elephant}
+            src={murchison}
             alt="Your Image"
             className="w-full h-full rounded-lg zoom-image "
           />
 
-          <div className="absolute left-0 bottom-0 p-4 text-white bg-black bg-opacity-50">
-            <p className="text-lg font-semibold text-brightRed">Your Text Goes Here</p>
-            <p className="text-sm">Additional information</p>
+          <div className="absolute left-0 bottom-0 p-4 text-white ">
+            <p className="text-brightRed font-smooch text-2xl">Adventure</p>
+            <p className="text-xl">MURCHISON FALLS</p>
           </div>
 
           <button className="absolute top-0 right-0 m-4 px-4 py-2 bg-brightRed text-white hover:bg-brightRedLight rounded-full">
@@ -182,14 +186,14 @@ export default function Home() {
         
         <div className="relative w-full lg:w-2/6 lg:h-64 lg:my-2 md:mb-3 md:w-72 md:h-64 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
           <img
-            src={lion}
+            src={queen}
             alt="Your Image"
             className="w-full h-full rounded-lg zoom-image"
           />
 
-          <div className="absolute left-0 bottom-0 p-4 text-white bg-black bg-opacity-50">
-            <p className="text-lg font-semibold text-brightRed">Your Text Goes Here</p>
-            <p className="text-sm">Additional information</p>
+          <div className="absolute left-0 bottom-0 p-4 text-white ">
+            <p className="text-2xl text-brightRed font-smooch">Wildlife</p>
+            <p className="text-xl">QUEEN ELIZABETH PARK</p>
           </div>
 
           <button className="absolute top-0 right-0 m-4 px-4 py-2 bg-brightRed text-white hover:bg-brightRedLight rounded-full">
@@ -200,14 +204,14 @@ export default function Home() {
         
         <div className="relative w-full lg:w-64 lg:h-64 lg:my-2 md:mb-3 md:w-52 md:h-64 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
           <img
-            src={gorilla}
+            src={kidepo}
             alt="Your Image"
             className="w-full h-full rounded-lg zoom-image"
           />
 
-          <div className="absolute left-0 bottom-0 p-4 text-white bg-black bg-opacity-50">
-            <p className="text-lg font-semibold text-brightRed">Your Text Goes Here</p>
-            <p className="text-sm">Additional information</p>
+          <div className="absolute left-0 bottom-0 p-4 text-white ">
+            <p className="text-2xl text-brightRed font-smooch">Wildlife</p>
+            <p className="text-xl">KIDEPO VALLEY</p>
           </div>
 
           <button className="absolute top-0 right-0 m-4 px-4 py-2 bg-brightRed text-white hover:bg-brightRedLight rounded-full">
@@ -220,14 +224,14 @@ export default function Home() {
         <div className="slideshow-container flex items-center lg:w-2/6 lg:h-72 lg:my-2 md:mb-3 md:w-96 md:h-72 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
         <img className="slideshow-image" src={currentSlideData.image} alt={`Image ${currentSlide + 1}`} />
           <div className="slideshow-text">
-            <div className="slideshow-heading">{currentSlideData.heading}</div>
+            <div className="slideshow-heading font-smooch text-brightRed text-4xl">{currentSlideData.heading}</div>
             <div className="slideshow-paragraph">{currentSlideData.paragraph}</div>
           </div>
-          <button className="slideshow-button prev" onClick={prevSlide}>
-            Previous
+          <button className="slideshow-button prev rounded-full opacity-0 hover:opacity-100" onClick={prevSlide}>
+          <IoChevronBack className='w-8 h-8'/>
           </button>
-          <button className="slideshow-button next" onClick={nextSlide}>
-            Next
+          <button className="slideshow-button next rounded-full opacity-0 hover:opacity-100" onClick={nextSlide}>
+          <IoChevronForward className='w-8 h-8'/>
           </button>
         </div>
        
@@ -237,14 +241,14 @@ export default function Home() {
 
         <div className="relative w-full lg:w-2/5 lg:h-64 lg:my-2 md:mb-3 md:w-2/5 md:h-64 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
           <img
-            src={tourist}
+            src={mburo}
             alt="Your Image"
             className="w-full h-full rounded-lg zoom-image"
           />
 
-          <div className="absolute left-0 bottom-0 p-4 text-white bg-black bg-opacity-50">
-            <p className="text-lg font-semibold text-brightRed">Your Text Goes Here</p>
-            <p className="text-sm">Additional information</p>
+          <div className="absolute left-0 bottom-0 p-4 text-white  ">
+            <p className="text-2xl text-brightRed font-smooch">Wildlife</p>
+            <p className="text-xl">LAKE MBURO</p>
           </div>
 
           <button className="absolute top-0 right-0 m-4 px-4 py-2 bg-brightRed text-white hover:bg-brightRedLight rounded-full">
@@ -254,14 +258,14 @@ export default function Home() {
 
         <div className="relative w-full lg:w-2/5 lg:h-64 lg:my-2 md:mb-3 md:w-2/5 md:h-64 sm:h-auto sm:w-9/12 sm:mb-3 xsm:mb-3 xsm:h-auto xsm:w-80">
           <img
-            src={lion}
+            src={gorilla}
             alt="Your Image"
             className="w-full h-full rounded-lg zoom-image"
           />
 
-          <div className="absolute left-0 bottom-0 p-4 text-white bg-black bg-opacity-50">
-            <p className="text-lg font-semibold text-brightRed">Your Text Goes Here</p>
-            <p className="text-sm">Additional information</p>
+          <div className="absolute left-0 bottom-0 p-4 text-white">
+            <p className="text-2xl text-brightRed font-smooch">Adventure</p>
+            <p className="text-xl">KIBALE FOREST</p>
           </div>
 
           <button className="absolute top-0 right-0 m-4 px-4 py-2 bg-brightRed text-white hover:bg-brightRedLight rounded-full">
@@ -281,9 +285,9 @@ export default function Home() {
              </div>
 
             <div className="flex flex-col mb-32 space-y-5    md:w-1/2">
-                <h4>Get to know us</h4>
-                <h1 className="max-w-md text-2xl font-bold text-center md:text-5xl md:text-left">
-                   Plan you Trip with Viva Quest Safaris 
+                <h4 className='font-smooch text-brightRed text-4xl'>Get to know us</h4>
+                <h1 className="max-w-md text-2xl font-bold font-indie-flower text-center md:text-5xl md:text-left">
+                   Plan your Trip with Viva Quest Safaris 
                 </h1>
                 <p className="max-w-sm text-center text-darkGrayisBlue md:text-left">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero magnam quas fugiat nam sint itaque ipsam dolorum aut, repellendus sapiente nobis eaque vitae quibusdam temporibus dicta minus accusamus porro reiciendis esse! Impedit adipisci at sapiente iure eum nihil doloremque voluptatibus nemo. Quibusdam nihil omnis optio!
@@ -302,7 +306,7 @@ export default function Home() {
     <Slider {...settings}>
         {images.map((image) => (
           <div key={image.id} className='mt-14'>
-            <div className="relative w-64 h-64 flex justice group cursor-pointer">
+            <div className="relative md:w-64 md:h-64 xsm:w-full xsm:h-72  justice group cursor-pointer">
               <img
                 src={image.src}
                 alt="Your Image"
@@ -310,8 +314,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="text-white text-center">
-                  <p className="text-lg font-semibold text-brightRed">Your Text Goes Here</p>
-                  <p className="text-sm">Additional information</p>
+                  <p className="text-3xl text-brightRed font-smooch">Wildlife</p>
+                  <p className="text-sm">Discovery Islands</p>
                 </div>
               </div>
             </div>

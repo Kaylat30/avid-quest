@@ -23,7 +23,12 @@ export default {
         veryPaleRed: 'hsl(13, 100%, 96%)',
         veryLightGray: 'hsl(0, 0%, 98%)',
 
-      }
+      },
+      fontFamily: {
+        'indie-flower': ['Indie Flower', 'cursive'],
+        'zeyada': ['Zeyada', 'cursive'],
+        'smooch': ['Smooch', 'cursive'],
+      },
     },
   },
   plugins: [],

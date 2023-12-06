@@ -1,4 +1,4 @@
-import resort1 from '../imgs/resort1.jpg';
+import resort1 from '../imgs/kidepo.jpg';
 export default function AboutUs()
 {
     const parentDivStyle = {

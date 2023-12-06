@@ -5,6 +5,7 @@ import youtube from "../imgs/icon-youtube.svg"
 import twitter from "../imgs/icon-twitter.svg"
 import pinterest from "../imgs/icon-pinterest.svg"
 import instagram from "../imgs/icon-instagram.svg"
+import { IoCall, IoLocation, IoMail } from 'react-icons/io5';
 export default function ContactUs()
 {
     const parentDivStyle = {
@@ -79,7 +80,8 @@ export default function ContactUs()
             <section className='flex flex-col justify-between  lg:flex-row m-10 '>
                 <div className='flex justify-around items-center lg:w-72  h-40 rounded-lg border border-solid mb-3 '> 
                     <Link to="/" className="hover:bg-brightRed rounded-full p-3 bg-black">
-                        <img src={facebook} className="h-8 rounded-full" alt="Facebook" />
+                        <IoLocation className='text-white '/>
+
                     </Link>
                     <div>
                         <h1 className='font-bold text-xl'>Address</h1>
@@ -88,7 +90,7 @@ export default function ContactUs()
                 </div> 
                 <div className='flex justify-around items-center lg:w-72  h-40 rounded-lg border border-solid mb-3'> 
                     <Link to="/" className="hover:bg-brightRed rounded-full p-3 bg-black">
-                        <img src={facebook} className="h-8 rounded-full" alt="Facebook" />
+                    <IoCall className='text-white '/>
                     </Link>
                     <div>
                         <h1 className='font-bold text-xl'>Phone</h1>
@@ -98,7 +100,7 @@ export default function ContactUs()
                 </div>
                 <div className='flex justify-around items-center lg:w-72  h-40 rounded-lg border border-solid mb-3'> 
                     <Link to="/" className="hover:bg-brightRed rounded-full p-3 bg-black">
-                        <img src={facebook} className="h-8 rounded-full" alt="Facebook" />
+                    <IoMail className='text-white '/>
                     </Link>
                     <div>
                         <h1 className='font-bold text-xl'>Email</h1>

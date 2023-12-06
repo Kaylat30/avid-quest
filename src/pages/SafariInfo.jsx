@@ -9,10 +9,14 @@ import gorilla from '../imgs/gorila.jpg';
 import lion from '../imgs/lion.jpg'; 
 import tourist from '../imgs/tourist.jpg'; 
 import giraffe from '../imgs/giraffe.jpg'; 
-import resort1 from '../imgs/resort1.jpg'; 
 import buffalo from "../imgs/buffalo.jpg" ;
+import mburo from '../imgs/mburo.jpg'; 
+import kidepo from '../imgs/kidepo.jpg'; 
+import murchison from "../imgs/murchison.jpg" ;
+
 import { getSafari } from '../api';
 import { Suspense } from 'react';
+import { IoCheckmarkDoneOutline, IoCloseOutline, IoLanguage, IoLocation, IoPeople } from 'react-icons/io5';
 
 export function loader({params})
 {
@@ -30,11 +34,11 @@ export default function SafariInfo()
         { id: 4, src: lion },
         { id: 5, src: gorilla },
         { id: 6, src: giraffe },
-        { id: 7, src: tourist },
+        { id: 7, src: mburo },
         { id: 8, src: crane },
-        { id: 9, src: resort1 },
-        { id: 10, src: gorilla },
-        // Add more images as needed
+        { id: 9, src: kidepo },
+        { id: 10, src: murchison },
+    
       ];
       
       const settings = {
@@ -54,7 +58,7 @@ export default function SafariInfo()
           {
             breakpoint: 768, // Tablet view
             settings: {
-              slidesToShow: 2, // Display 3 images for tablet view
+              slidesToShow: 2, // Display 2 images for tablet view
             },
           },
           {
@@ -135,19 +139,19 @@ export default function SafariInfo()
                                 <h1 className='text-brightRed font-bold text-xl'>Included</h1>
                                 <div className='space-y-2'>
                                     <div className='flex item-center' >
-                                        <FaClockRotateLeft />
+                                        <IoCheckmarkDoneOutline />
                                         <h1>Pick and Drop Services</h1>
                                     </div>
                                     <div className='flex item-center' >
-                                        <FaClockRotateLeft />
+                                    <IoCheckmarkDoneOutline />
                                         <h1>1 Meal Per Day</h1>
                                     </div>
                                     <div className='flex item-center' >
-                                        <FaClockRotateLeft />
+                                    <IoCheckmarkDoneOutline />
                                         <h1>Cruise Dinner & Music Event</h1>
                                     </div>
                                     <div className='flex item-center' >
-                                        <FaClockRotateLeft />
+                                    <IoCheckmarkDoneOutline />
                                         <h1>Visit 7 Best Places in the City With Group</h1>
                                     </div>
                                 </div>
@@ -156,19 +160,19 @@ export default function SafariInfo()
                                 <h1 className='text-brightRed text-xl font-bold'>Excluded</h1>
                                     <div className='space-y-2'>
                                         <div className='flex'>
-                                            <FaClockRotateLeft />
+                                            <IoCloseOutline />
                                             <h1>Additional Services</h1>
                                         </div>
                                         <div className='flex'>
-                                            <FaClockRotateLeft />
+                                            <IoCloseOutline />
                                             <h1>Insurance</h1>
                                         </div>
                                         <div className='flex'>
-                                            <FaClockRotateLeft />
+                                            <IoCloseOutline />
                                             <h1>Food & Drinks</h1>
                                         </div>
                                         <div className='flex'>
-                                            <FaClockRotateLeft />
+                                            <IoCloseOutline />
                                             <h1>Tickets</h1>
                                         </div>
                                     </div>                                
@@ -242,7 +246,7 @@ export default function SafariInfo()
                             <div className=' pl-6 text-2xl font-bold text-brightRed'>Tour information</div>
                             <div className='flex flex-col pl-8 space-y-3  '>
                                 <div className='flex items-center space-x-2'>
-                                    <FaClockRotateLeft className='text-brightRed text-4xl'/>
+                                    <IoPeople className='text-brightRed text-4xl'/>
                                     <div className='flex flex-col'>
                                         <h1 className='text-gray-400 font-sm'>Max Guests</h1>
                                         <h1 className='font-medium'>50</h1>
@@ -256,14 +260,14 @@ export default function SafariInfo()
                                     </div>
                                 </div>
                                 <div className='flex items-center space-x-2'>
-                                    <FaClockRotateLeft className='text-brightRed text-4xl'/>
+                                    <IoLocation className='text-brightRed text-4xl'/>
                                     <div className='flex flex-col'>
                                         <h1 className='text-gray-400 font-sm'>Tour location</h1>
                                         <h1 className='font-medium'>East Africa</h1>
                                     </div>
                                 </div>
                                 <div className='flex items-center space-x-2'>
-                                    <FaClockRotateLeft className='text-brightRed text-4xl'/>
+                                    <IoLanguage className='text-brightRed text-4xl'/>
                                     <div className='flex flex-col'>
                                         <h1 className='text-gray-400 font-sm'>Languages Support</h1>
                                         <h1 className='font-medium'>German,English</h1>

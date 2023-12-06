@@ -8,6 +8,7 @@ import instagram from "../imgs/icon-instagram.svg"
 
 export default function Footer()
 {
+    const currentYear = new Date().getFullYear();
     return(
         <>
            
@@ -17,7 +18,7 @@ export default function Footer()
                
                <div className="flex flex-col-reverse items-center justify-between space-y-12 lg:flex-col lg:space-y-0 lg:items-start">
                 <div className="mx-auto my-6 text-center text-white lg:hidden">
-                    Copyright &copy; 2022, All Rights Reserved 
+                    Copyright &copy; {currentYear}, All Rights Reserved 
                 </div>
                 
                 <div className="flex items-center">
@@ -82,11 +83,14 @@ export default function Footer()
                         
                     </div>
                     <div className="hidden text-white lg:block">
-                        Copyright &copy; 2023, All Rights Reserved 
+                        Copyright &copy; {currentYear}, All Rights Reserved 
                     </div>
                </div>
+
             
         </div>
+
+        <div className="text-white flex justify-center">Developed by Kayondo A.Latif</div>
         
     </footer>
         </>

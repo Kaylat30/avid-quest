@@ -1,11 +1,11 @@
 import { defer,useLocation,useLoaderData, Await,Link } from 'react-router-dom';
-import {getDiscover} from '../api'
+import {getDiscover,getDiscovers} from '../api'
 import { Suspense } from 'react';
 import resort1 from '../imgs/resort1.jpg'
-import { FaClockRotateLeft } from "react-icons/fa6";
+import { IoFolderOpen, IoPerson } from 'react-icons/io5';
 
 export function loader({ params }) {
-    return defer({blog:getDiscover(params.id)}) 
+    return defer({blog:getDiscover(params.id),AllBlogs: getDiscovers()}) 
 }
 
 export default function DiscoverInfo()
@@ -24,6 +24,8 @@ export default function DiscoverInfo()
         paddingRight: '60%',
         alignItems: 'center',
     };
+
+    
 
     function renderBlogElement(blog)
     {
@@ -54,8 +56,8 @@ export default function DiscoverInfo()
                             <div>
                                 <img src={blog.image}/>
                                 <div className='flex space-x-8 mt-3'>
-                                    <div className='flex items-center space-x-1'><FaClockRotateLeft className='text-brightRed'/> <h1>{blog.author}</h1></div>
-                                    <div className='flex items-center space-x-1'><FaClockRotateLeft className='text-brightRed'/><h1>{blog.tag}, Nature</h1></div>
+                                    <div className='flex items-center space-x-1'><IoPerson className='text-brightRed'/> <h1>{blog.author}</h1></div>
+                                    <div className='flex items-center space-x-1'><IoFolderOpen className='text-brightRed'/><h1>{blog.tag}, Nature</h1></div>
                                 </div>
                             </div>
                             <div className='space-y-3'>
@@ -68,7 +70,7 @@ export default function DiscoverInfo()
                         <div className='space-y-5 mt-4'>
                             <div className='md:w-72 flex flex-col border rounded-lg space-y-3 py-5'>
                                 <div className=' pl-6 text-2xl font-bold '>Recent Posts</div>
-                                <div className='flex flex-col pl-8 space-y-10  '>
+                                <div className='flex flex-col pl-8 space-y-10  '>                                    
                                     <div className='flex items-center space-x-2'>
                                         <img className='rounded-md h-16 w-16'  src={resort1}/>
                                         <div className='flex flex-col'>

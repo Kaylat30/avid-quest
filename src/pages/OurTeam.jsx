@@ -5,7 +5,7 @@ import youtube from "../imgs/icon-youtube.svg"
 import twitter from "../imgs/icon-twitter.svg"
 import pinterest from "../imgs/icon-pinterest.svg"
 import instagram from "../imgs/icon-instagram.svg"
-import resort1 from '../imgs/resort1.jpg';
+import resort1 from '../imgs/queen.jpg';
 import { getTeam } from "../api"
 
 
