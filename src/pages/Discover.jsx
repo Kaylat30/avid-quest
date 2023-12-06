@@ -58,7 +58,7 @@ export default function Discover()
         const currentblogs = displayBlogs.slice(startIndex, endIndex);
         
         // Calculate the total number of pages
-        const totalPages = Math.ceil(blogs.length / postsPerPage);
+        const totalPages = Math.ceil(displayBlogs.length / postsPerPage);
 
         // Function to handle page navigation
         const handlePageChange = (pageNumber) => {
