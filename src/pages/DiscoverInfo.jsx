@@ -4,8 +4,21 @@ import { Suspense } from 'react';
 import resort1 from '../imgs/resort1.jpg'
 import { IoFolderOpen, IoPerson } from 'react-icons/io5';
 
-export function loader({ params }) {
-    return defer({blog:getDiscover(params.id),AllBlogs: getDiscovers()}) 
+
+function shuffleArray(array) {
+  
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+export async function loader({ params }) {
+    const loadedAllBlogs = await getDiscovers();
+    const shuffledProducts = shuffleArray(loadedAllBlogs);
+    return defer({blog: await getDiscover(params.id),AllBlogs: shuffledProducts }) 
 }
 
 export default function DiscoverInfo()
@@ -25,7 +38,26 @@ export default function DiscoverInfo()
         alignItems: 'center',
     };
 
-    
+    function renderAllBlogElements(id)
+    {
+        const blogs = loaderData.AllBlogs
+        const currentblogs = blogs.filter((blog)=> blog.id !== id).slice(0,4)
+        console.log(currentblogs)
+
+        return(
+            <>
+            {currentblogs.map((blog)=>(
+              <Link to={`../discover/${blog.id}`} key={blog.id} className='flex items-center space-x-2'>
+              <img className='rounded-md h-16 w-16'  src={blog.image}/>
+              <div className='flex flex-col'>
+                  <h1 className='font-sm font-bold'>{blog.title}</h1>
+                  <h1 className='font-xs text-gray-400'>By {blog.author}</h1>
+              </div>
+            </Link>  
+             ))}
+            </>
+        )
+    }
 
     function renderBlogElement(blog)
     {
@@ -70,8 +102,9 @@ export default function DiscoverInfo()
                         <div className='space-y-5 mt-4'>
                             <div className='md:w-72 flex flex-col border rounded-lg space-y-3 py-5'>
                                 <div className=' pl-6 text-2xl font-bold '>Recent Posts</div>
-                                <div className='flex flex-col pl-8 space-y-10  '>                                    
-                                    <div className='flex items-center space-x-2'>
+                                <div className='flex flex-col pl-8 space-y-10  '> 
+                                    {renderAllBlogElements(blog.id)}                                   
+                                    {/* <div className='flex items-center space-x-2'>
                                         <img className='rounded-md h-16 w-16'  src={resort1}/>
                                         <div className='flex flex-col'>
                                             <h1 className='font-sm font-bold'>THE BACHWEZI</h1>
@@ -98,7 +131,7 @@ export default function DiscoverInfo()
                                             <h1 className='font-sm font-bold'>THE BACHWEZI</h1>
                                             <h1 className='font-xs text-gray-400'>By Kayondo Abdulatif</h1>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

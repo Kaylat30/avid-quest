@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+src/db.jsx
 node_modules
 dist
 dist-ssr
@@ -23,4 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 
-src/db
+
