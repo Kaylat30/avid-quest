@@ -22,6 +22,7 @@ export default function Header() {
   // Close the menu when a navigation occurs
   useEffect(() => {
     setMenuOpen(false);
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   // Check user authentication status on component mount
